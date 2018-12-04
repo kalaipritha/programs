@@ -1,3 +1,4 @@
+//binary search
 #include <iostream>
 
 using namespace std;
@@ -6,13 +7,13 @@ int middle(int p,int r)
     int q=(p+r)/2;
     return q;
 }
-void binsearch(int a[10],int i,int p,int r)
+int binsearch(int a[10],int i,int p,int r)
 {
     //cout<<a[2];
     int mid=middle(p,r);
     if(i==a[mid])
     {
-        cout<<"the element found at "<<mid<<" position";
+      return 1;
         
     }
     else if(i<a[mid])
@@ -32,7 +33,10 @@ int main()
     int i;
     cout<<"enter the number to be searched";
     cin>>i;
-    binsearch(a,i,0,7);
-cout<<"the element was not found";
+    int m=binsearch(a,i,0,7);
+    if(m==1)
+    cout<<"the given element is present";
+    else
+    cout<<"the element is not present";
     return 0;
 }
