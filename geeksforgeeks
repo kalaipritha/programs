@@ -1,0 +1,38 @@
+#include <iostream>
+
+using namespace std;
+int middle(int p,int r)
+{
+    int q=(p+r)/2;
+    return q;
+}
+void binsearch(int a[10],int i,int p,int r)
+{
+    //cout<<a[2];
+    int mid=middle(p,r);
+    if(i==a[mid])
+    {
+        cout<<"the element found at "<<mid<<" position";
+        
+    }
+    else if(i<a[mid])
+    {
+        binsearch(a,i,p,mid);
+    }
+    else
+    {
+        binsearch(a,i,mid+1,r);
+    }
+    
+}
+
+int main()
+{
+    int a[10]={1,5,9,12,13,54,66,100};
+    int i;
+    cout<<"enter the number to be searched";
+    cin>>i;
+    binsearch(a,i,0,7);
+cout<<"the element was not found";
+    return 0;
+}
