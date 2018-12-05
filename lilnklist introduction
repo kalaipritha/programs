@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void push(struct node** heads,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*heads);
+    (*heads)=newnode;
+    top = newnode;
+}
+void print()
+{
+    struct node* q;
+    q=top;
+    do
+    {
+        printf("\n welcome");
+       printf(" %d ",q->data);
+       q=q->next;
+    }while(q!=NULL);
+    //printf("i am done");
+}
+void ins_fir(struct node** heads)
+{
+   // printf("this is the first element %d",(*heads)->data);
+    struct node* r;
+    r=(*heads);
+    while(r->next!=NULL)
+    {
+        r=r->next;
+    }
+    //printf("now r is at %d",r->data);
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    int n;
+    printf("\nenter a number to be inserted first");
+    scanf("%d",&n);
+    newnode->data=n;
+    newnode->next=NULL;
+    r->next=newnode;
+    r=newnode;
+    //printf("inserted AT FIRST");
+}
+void ins_end()
+{
+    int n;
+    printf("\nenter a number to be inserted at last");
+    scanf("%d",&n);
+    push(&top,n);
+    print();
+}
+void ins_mid(struct node** heads)
+{
+    int i,j;
+    printf("\nvalue of top is %d",top->data);
+    printf("\nenter a number after which a number should be insrted");
+    scanf("%d",&i);
+    printf("\nenter a number to be inserted");
+    scanf("%d",&j);
+    struct node* q;
+    q=top;
+    
+    while(q->next!=NULL)
+    {
+        if(q->data==i)
+        {
+            struct node* newnode=(struct node*)malloc(sizeof(struct node));
+            newnode->data=j;
+            newnode->next=q->next;
+            q->next=newnode;
+            break;
+        }
+        else
+        {
+            q=q->next;
+        }
+    }
+}
+int main()
+{
+    struct node* head=NULL;
+   // struct node* start=head;
+    int num,i;
+    printf("\nenter the number to be inserted");
+    for(i=1;i<=5;i++)
+    {
+        scanf("%d",&num);
+        push(&head,num);
+    }
+    printf("inserted successfully");
+    print();
+    printf("\nprinted successfully");
+    ins_fir(&head);
+    print();
+    ins_end();
+    printf("succcessfully inserted at last");
+    ins_mid(&head);
+    print();
+    return 0;
+}
+
+
+
