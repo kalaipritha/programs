@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void push(struct node** heads,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*heads);
+    (*heads)=newnode;
+    top = newnode;
+}
+void len(struct node** head)
+{
+    printf("\t\tITERARTION");
+    int count;
+    while((*head)!=NULL)
+    {
+        count++;
+        (*head)=(*head)->next;
+    }
+    printf("\nthe total number of nodes in the list is %d",count);
+}
+int len2(struct node** head)
+{
+    static int count;
+    //printf("\t\t%d",(*head)->data);
+    if((*head)==NULL)
+    {
+      // printf("hi");
+       printf("\ncount=%d",count);
+        return count;
+    }
+    count++;
+    printf("\nhello");
+    return(len2(&(*head)->next));
+    
+}
+int main()
+{
+    struct node* head=NULL;
+    int num,i;
+    printf("\nenter the number to be inserted");
+    for(i=1;i<=3;i++)
+    {
+        scanf("%d",&num);
+        push(&head,num);
+    }
+    printf("inserted successfully");
+    len(&head);
+    i=len2(&head);
+    printf("\nthe total number of nodes in the list is %d",i);
+    return 0;
+}
