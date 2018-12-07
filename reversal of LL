@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include<malloc.h>
+#include <malloc.h>
 struct node
 {
     int data;
@@ -17,10 +17,8 @@ void push(struct node** heads,int n)
 void printrev()
 {
     struct node* pre=NULL;
-    struct node* cur;
-    cur=top;
     struct node* nxt=NULL;
-    printf("hiiiiiii");
+    struct node* cur=top;
     while(cur!=NULL)
     {
         nxt=cur->next;
@@ -28,10 +26,13 @@ void printrev()
         pre=cur;
         cur=nxt;
     }
+    printf("\nsuccessfully reversed");
     while(pre!=NULL)
     {
-        printf("\nwelcome %d",pre->data);
+        printf("\n%d",pre->data);
+        pre=pre->next;
     }
+    
 }
 
 int main()
@@ -49,4 +50,3 @@ int main()
 
     return 0;
 }
-
