@@ -1,1 +1,85 @@
-
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void create(struct node** head,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*head);
+    (*head)=newnode;
+    top=newnode;
+}
+void segregate(struct node* head)
+{
+   struct node* q=NULL;
+   struct node* pre=NULL;
+   struct node* cur;
+   int num;
+   cur=top;
+   while(cur!=NULL)
+   {
+       num=cur->data%2;
+       if(num!=0)
+       {
+           if(pre==NULL)
+           {
+               
+               create(&q,cur->data);
+               pre=cur;
+               cur=cur->next;
+               pre=NULL;
+               head=cur;
+               
+           }
+           else if(cur->next==NULL)
+           {
+              
+               create(&q,cur->data);
+               pre->next=NULL;
+               cur=NULL;
+           }
+           else
+           {
+               
+               create(&q,cur->data);
+               pre->next=cur->next;
+               cur=pre->next;
+           }
+       }
+       else
+       {
+           
+           pre=cur;
+           cur=cur->next;
+           
+       }
+   }
+   pre->next=q;
+ 
+   while(head!=NULL)
+   {
+       printf("\nwelcome %d",head->data);
+       head=head->next;
+   }
+}
+int main()
+{
+   struct node* head;
+   int num,i;
+   printf("enter the number");
+   for(i=1;i<=5;i++)
+   {
+       scanf("%d",&num);
+       create(&head,num);
+   }
+   printf("\ncreation complted");
+   segregate(head);
+   printf("\nsegregated");
+ 
+    return 0;
+}
