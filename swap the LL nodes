@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void push(struct node** heads,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*heads);
+    (*heads)=newnode;
+    top = newnode;
+}
+void swap_node()
+{
+    struct node *prex=NULL;
+    struct node* curx;
+    struct node* prey=NULL;
+    struct node* cury;
+    int x,y,i;
+    curx=top;
+    cury=top;
+    printf("\nenter the two numbers to swap");
+    scanf("%d%d",&x,&y);
+    while(curx->data!=x)
+    {
+        prex=curx;
+        curx=curx->next;
+    }
+    while(cury->data!=y)
+    {
+        prey=cury;
+        cury=cury->next;
+    }
+    prex->next=cury;
+    curx->next=cury->next;
+    cury->next=prey;
+    
+}
+void print()
+{
+    struct node* q;
+    q=top;
+    do
+    {
+        printf("\n welcome");
+       printf(" %d ",q->data);
+       q=q->next;
+    }while(q!=NULL);
+}
+
+int main()
+{
+   struct node* head=NULL;
+    int num,i;
+    printf("\nenter the number to be inserted");
+    for(i=1;i<=5;i++)
+    {
+        scanf("%d",&num);
+        push(&head,num);
+    }
+    printf("inserted successfully");
+    swap_node();
+    print();
+    return 0;
+}
