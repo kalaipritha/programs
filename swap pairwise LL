@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void push(struct node** heads,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*heads);
+    (*heads)=newnode;
+    top = newnode;
+}
+void pair_rev()
+{
+    struct node* cur=top->next;
+    struct node* pre=top;
+    struct node* temp;
+    while(cur!=NULL)
+    {
+        temp=cur->data;
+        cur->data=pre->data;
+        pre->data=temp;
+        pre=cur->next;
+        cur=pre->next;
+    }
+}
+void print()
+{
+    struct node* q;
+    q=top;
+    do
+    {
+       printf("%d-> ",q->data);
+       q=q->next;
+    }while(q!=NULL);
+}
+
+int main()
+{
+    struct node* head=NULL;
+    int num,i;
+    printf("\nenter the number to be inserted");
+    for(i=1;i<=5;i++)
+    {
+        scanf("%d",&num);
+        push(&head,num);
+    }
+    printf("inserted successfully");
+    print();
+    pair_rev();
+    print();
+
+    return 0;
+}
