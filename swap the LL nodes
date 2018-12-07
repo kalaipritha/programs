@@ -20,6 +20,7 @@ void swap_node()
     struct node* curx;
     struct node* prey=NULL;
     struct node* cury;
+    struct node* temp;
     int x,y,i;
     curx=top;
     cury=top;
@@ -35,9 +36,18 @@ void swap_node()
         prey=cury;
         cury=cury->next;
     }
-    prex->next=cury;
-    curx->next=cury->next;
-    cury->next=prey;
+    if(prex!=NULL)
+    {
+      prex->next=cury;
+    }
+    else
+    {
+        top=cury;
+    }
+    prey->next=curx;
+    temp=cury->next;
+    cury->next=curx->next;
+    curx->next=temp;
     
 }
 void print()
