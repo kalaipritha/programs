@@ -19,12 +19,13 @@ void pair_rev()
     struct node* cur=top->next;
     struct node* pre=top;
     struct node* temp;
-    while(cur!=NULL)
+    while(cur!=NULL&&pre!=NULL)
     {
         temp=cur->data;
         cur->data=pre->data;
         pre->data=temp;
         pre=cur->next;
+        if(pre!=NULL)
         cur=pre->next;
     }
 }
@@ -44,7 +45,7 @@ int main()
     struct node* head=NULL;
     int num,i;
     printf("\nenter the number to be inserted");
-    for(i=1;i<=5;i++)
+    for(i=1;i<=6;i++)
     {
         scanf("%d",&num);
         push(&head,num);
