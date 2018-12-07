@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void push(struct node** heads,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*heads);
+    (*heads)=newnode;
+    top = newnode;
+}
+void rem_dup()
+{
+    struct node* q=top;
+    struct node* p;
+    struct node* pre;
+    int i,j;
+    while(q!=NULL)
+    {
+        p=q->next;
+        pre=q;
+        while(p!=NULL)
+        {
+           if(q->data==p->data)
+           {
+               pre->next=p->next;
+               p=NULL;
+               p=pre->next;
+           }
+           else
+           {
+               pre=p;
+               p=p->next;
+           }
+        }
+        q=q->next;
+    }
+}
+void print()
+{
+    struct node* q;
+    q=top;
+    do
+    {
+        printf("\n welcome");
+       printf(" %d ",q->data);
+       q=q->next;
+    }while(q!=NULL);
+}
+
+int main()
+{
+     struct node* head=NULL;
+    int num,i;
+    printf("\nenter the number to be inserted");
+    for(i=1;i<=5;i++)
+    {
+        scanf("%d",&num);
+        push(&head,num);
+    }
+    printf("inserted successfully");
+    rem_dup();
+    print();
+    return 0;
+}
