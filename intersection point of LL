@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void intersection_point(struct node* h1,struct node* h2)
+{
+    struct node* q;
+    struct node* p=h2;
+    while(p!=NULL)
+    {
+        printf("heloooo");
+        q=h1;
+        while(q!=NULL)
+        {
+            printf("\nhiii");
+            if(p->data==q->data)
+            {
+                printf("the intersection point is %d",p->data);
+                return;
+            }
+            else
+            {
+                q=q->next;
+            }
+        }
+        p=p->next;
+    }
+}
+int main()
+{
+    struct node* head1=(struct node*)malloc(sizeof(struct node));
+    head1->data=10;
+    struct node* head2=(struct node*)malloc(sizeof(struct node));
+    head2->data=3;
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=6;
+    head2->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=9;
+    head2->next->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=15;
+    head2->next->next->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=11;
+    head2->next->next->next->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=13;
+    head1->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=30;
+    head1->next->next=newnode;
+    head2->next->next->next->next->next=newnode;
+    head1->next->next->next=NULL;
+    intersection_point(head1,head2);
+   //printf("the value od h1 and h2 is %d and %d",head1->data,head2->data);
+    return 0;
+}
