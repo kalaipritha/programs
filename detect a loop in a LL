@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node{
+    int data;
+    struct node* next;
+};
+void detect(struct node* head)
+{
+    int s[100]={0},i,j=0;
+    while(head!=NULL)
+    {
+        if(s[head->data]==0)
+        {
+            s[head->data]=1;
+        }
+        else
+        {
+            printf("the loop is detected");
+            return;
+        }
+        head=head->next;
+    }
+    printf("\nthe loop is not detected");
+}
+int main()
+{
+    struct node* head=(struct node*)malloc(sizeof(struct node));
+    struct node* top;
+    struct node* newnode;
+    head->data=1;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=2;
+    head->next=newnode;
+    top=head->next;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=3;
+    head->next->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=4;
+    head->next->next->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=5;
+    head->next->next->next->next=top;
+    detect(head);
+    return 0;
+}
