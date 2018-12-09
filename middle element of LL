@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void push(struct node** heads,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*heads);
+    (*heads)=newnode;
+    top = newnode;
+}
+void get_node1()
+{
+    struct node* q=top;
+   int n=0,i=0,num;
+   while(q!=NULL)
+   {
+       q=q->next;
+       n++;
+   }
+   num=n/2;
+   q=top;
+   while(i<num)
+   {
+       q=q->next;
+       i++;
+   }
+   printf("\nthe node is %d",q->data);
+}
+void getnode2()
+{
+    struct node* i=top;
+    struct node* j=top;
+    while(j!=NULL&&j->next!=NULL)
+    {
+        i=i->next;
+        j=j->next->next;
+    }
+    printf("\n the element is %d",i->data);
+}
+void getnode3()
+{
+    struct node* i=top;
+    struct node* j=top;
+    int count=0;
+    while(j!=NULL)
+    {
+        if(count%2!=0)
+        {
+            i=i->next;
+        }
+        ++count;
+        j=j->next;
+    }
+    printf("\nthe middle elemenjt is %d",i->data);
+}
+int main()
+{
+  struct node* head=NULL;
+    int num,i,n;
+    printf("\nenter the number to be inserted");
+    for(i=1;i<=5;i++)
+    {
+        scanf("%d",&num);
+        push(&head,num);
+    }
+    printf("\ninserted successfully");
+    get_node1();
+    getnode2();
+    getnode3();
+    return 0;
+}
