@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node{
+    int data;
+    struct node* next;
+};
+int dlength(struct node* j)
+{
+    struct node* temp=j->next;
+    int i=2;
+    while(j!=temp)
+    {
+        i++;
+        temp=temp->next;
+    }
+    return i;
+}
+void detect_length(struct node* head)
+{
+    struct node*i=head;
+    struct node*j=head;
+    while(i&&j&&j->next)
+    {
+        i=i->next;
+        j=j->next->next;
+        if(i==j)
+        {
+            printf("the length of loop is %d",dlength(j));
+            return;
+        }
+    }
+    printf("the loop is not detected");
+}
+int main()
+{
+    struct node* head=(struct node*)malloc(sizeof(struct node));
+    struct node* top;
+    struct node* newnode;
+    head->data=1;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=2;
+    head->next=newnode;
+    top=head->next;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=3;
+    head->next->next=newnode;
+    //newnode=(struct node*)malloc(sizeof(struct node));
+   // newnode->data=4;
+   // head->next->next->next=newnode;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=5;
+    head->next->next->next=top;
+    detect_length(head);
+    return 0;
+}
