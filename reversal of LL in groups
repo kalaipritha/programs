@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <malloc.h>
+struct node
+{
+    int data;
+    struct node* next;
+};
+struct node* top;
+void create(struct node** head,int n)
+{
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=n;
+    newnode->next=(*head);
+    (*head)=newnode;
+    top=newnode;
+}
+void reverse(struct node* cur,struct node* pre)
+{
+    struct node* p=pre;
+    struct node* q=NULL;
+    struct node* s=NULL;
+    while(p!=cur)
+    {
+        q=p->next;
+        p->next=s;
+        s=p;
+        p=q;
+    }
+}
+struct node* printrev(struct node* head,int num)
+{
+    struct node* cur=head;
+    struct node* pre=head;
+    struct node* nxt;
+    struct node* p=NULL;
+    struct node* q=NULL;
+    struct node* s=NULL;
+    int i=1;
+    while(i<num&&cur!=NULL)
+    {
+        cur=cur->next;
+        i++;
+    }
+    //printf("\nthe value of currents is %d",cur->data);
+    if(cur!=NULL)
+    {
+      nxt=cur->next;
+      printf("\nthe currrent value of next is %d",nxt->data);
+      p=pre;
+      while(s!=cur)
+      {
+         printf("\nhello reversed");
+         q=p->next;
+         p->next=s;
+         s=p;
+         p=q;
+      }
+      pre->next=printrev(nxt,num);
+      printf("\nthe value after returning is %d",pre->data);
+      printf("the returning value is %d",cur->data);
+      return cur;
+    }
+    return pre;
+}
+void print(struct node* head)
+{
+    struct node* q;
+    q=head;
+    do
+    {
+       printf(" %d-> ",q->data);
+       q=q->next;
+    }while(q!=NULL);
+}
+int main()
+{
+    struct node* head;
+   int num,i;
+   printf("enter the numbers");
+   for(i=1;i<=8;i++)
+   {
+       scanf("%d",&num);
+       create(&head,num);
+   }
+   printf("\ncreation complted");
+   print(head);
+   printf("\n enter th ekey value");
+   scanf("%d",&num);
+   if(num==1)
+   print(head);
+   else
+   {
+    head=printrev(head,num);
+    printf("\nsuccessfully reversed");
+    print(head);
+   }
+    return 0;
+}
