@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+void print(int a[],int n)
+{
+    cout<<"\n";
+    for(int i=0;i<n;i++)
+   {
+      cout<<a[i]<<" ";  
+   }
+}
+
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   bool invert=true;
+   i=0;
+   while(i<n-1)
+   {
+       
+       if(invert)
+       {
+           if(a[i]>a[i+1])
+           {
+               int temp;
+               temp=a[i];
+               a[i]=a[i+1];
+               a[i+1]=temp;
+           }
+           i++;
+           
+       }
+       else
+       {
+           if(a[i]<a[i+1])
+           {
+               int temp;
+                temp=a[i];
+               a[i]=a[i+1];
+               a[i+1]=temp;
+           }
+           i++;
+       }
+       invert=!invert;
+   }
+   cout<<"\nthe zigzaged array is :\n";
+   for(int i=0;i<n;i++)
+   {
+       cout<<a[i]<<" ";
+   }
+
+    return 0;
+}
