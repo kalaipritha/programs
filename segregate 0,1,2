@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+void print(int a[],int n)
+{
+    cout<<"\n";
+    for(int i=0;i<n;i++)
+   {
+      cout<<a[i]<<" ";  
+   }
+}
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   printf("the array is ");
+   print(a,n);
+   int lo=0,mid=0,hi=n-1;
+   while(mid<=hi)
+   {
+       switch (a[mid])
+       {
+           case 1:
+           {
+               mid++;
+               print(a,n);
+               break;
+           }
+           case 2:
+           {
+               int temp;
+               //swap mid and hi and decrement hi
+               temp=a[mid];
+               a[mid]=a[hi];
+               a[hi]=temp;
+               hi--;
+               print(a,n);
+               break;
+           }
+           case 0:
+           {
+               int temp;
+               //swap mid an lo and increment lo
+               temp=a[mid];
+               a[mid]=a[lo];
+               a[lo]=temp;
+               lo++;
+               mid++;
+               print(a,n);
+               break;
+           }
+       }
+   }
+   cout<<"\nthe arrayb after reversing is :\n";
+   print(a,n);
+   
+    return 0;
+}
