@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+void print(int a[],int n)
+{
+    cout<<"\n";
+    for(int i=0;i<n;i++)
+   {
+      cout<<a[i]<<" ";  
+   }
+}
+
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   bool invert=true;
+   int p=0,q=1;
+   for(i=0;i<n;i++)
+   {
+       q=p+1;
+       if(invert)
+       {
+           if(a[p]<0)
+           {
+               ++p;
+           }
+           else
+           {
+               while(a[q]>0 && q<n-1)
+               {
+                   q++;
+               }
+               if(q>n-1)
+               break;
+               else
+               {
+                int temp;
+                temp=a[q];
+                a[q]=a[p];
+                a[p]=temp;
+               ++p;
+               }
+           }
+       }
+       else
+       {
+           if(a[p]>0)
+           {
+               ++p;
+           }
+           else
+           {
+               while(a[q]<0&&q<n-1)
+               {
+                   if(q<n)
+                   q++;
+               }
+               if(q>n)
+               break;
+               else
+               {
+                 int temp;
+                temp=a[q];
+                a[q]=a[p];
+                a[p]=temp;
+                ++p;
+               }
+           }
+       }
+       invert=!invert;
+   }
+   cout<<"the alternative array is :\n";
+   print(a,n);
+    return 0;
+}
