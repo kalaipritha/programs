@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+void print(int a[],int n)
+{
+    cout<<"\n";
+    for(int i=0;i<n;i++)
+   {
+      cout<<a[i]<<" ";  
+   }
+}
+int find_min(int a[],int lo,int hi)
+{
+    if(hi<lo)
+    {
+        return a[0];
+    }
+    if(hi==lo)
+    {
+        return a[lo];
+    }
+    int mid=(lo+hi)/2;
+    if(mid<hi && a[mid]>a[mid+1])
+    {
+        return a[mid+1];
+    }
+    if(mid>lo && a[mid]<a[mid-1])
+    {
+        return a[mid];
+    }
+    if( a[mid]<a[hi])
+    {
+        return find_min(a,lo,mid-1);
+    }
+    return find_min(a,mid+1,hi);
+    
+}
+
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   int p=find_min(a,0,n-1);
+   cout<<"\nthe minimum elemnt is "<<p;
+    return 0;
+}
