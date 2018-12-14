@@ -34,6 +34,7 @@ int main()
        }
    }
    cout<<"\nthe first three largest elements are :"<<first<<" "<<" "<<second<<" "<<third;
+   //another method is sort the given array and print the last three elements in the array;
    
    return 0;
 }
