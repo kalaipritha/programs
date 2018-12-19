@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<malloc.h>
+struct node
+{
+	int data;
+	struct node* l;
+	struct node* r;
+};
+struct node* root=NULL;
+
+void insert(struct node* root)
+{
+	struct node *nl,*nr;
+	int item;
+	char ch;
+	if(root!=NULL)
+	{
+		printf("\nenter an element :");
+		scanf("%d",&item);
+		root->data=item;
+		printf("\n do u want a left child of %d",root->data);
+		ch=getche();
+		if(ch=='y')
+		{
+			nl=(struct node*)malloc(sizeof(struct node*));
+			root->l=nl;
+			insert(nl);
+		}
+		else
+		{
+			root->l=NULL;
+			insert(NULL);
+		}
+		printf("\ndo you wanna create a right child of %d",root->data);
+		ch=getche();
+		if(ch=='y')
+		{
+			nr=(struct node*)malloc(sizeof(struct node*));
+			root->r=nr;
+			insert(nr);
+		}
+		else
+		{
+			root->r=NULL;
+			insert(NULL);
+		}
+	}
+	return;
+}
+void inorder(struct node* temp)
+{
+	if(temp==NULL)
+	return ;
+	
+	inorder(temp->l);
+	printf("%d ",temp->data);                                       
+	inorder(temp->r);
+}
+void preorder(struct node* temp)
+{
+	if(temp==NULL)
+	return;
+	printf("%d ",temp->data);
+	preorder(temp->l);
+	preorder(temp->r);
+}
+void postorder(struct node* temp)
+{
+	if(temp==NULL)
+	return ;
+	postorder(temp->l);
+	postorder(temp->r);
+	printf("%d ",temp->data);
+}
+int main()
+{
+
+	int n,i,num;
+	root =(struct node*)malloc(sizeof(struct node));
+	insert(root);
+	printf("\n inorder presentation is:\n");
+	inorder(root);
+	printf("\n the preorder presentation is :\n");
+	preorder(root);
+	printf("\n the postorder presentation is:\n");
+    postorder(root);	
+	return 0;
