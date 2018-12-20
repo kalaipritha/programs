@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<malloc.h>
+struct node
+{
+	int data;
+	struct node* l;
+	struct node* r;
+};
+struct node* root=NULL;
+struct node* newnode(int num)
+{
+	struct node* k;
+	k=(struct node*)malloc(sizeof(struct node));
+	k->data=num;
+	k->l=NULL;
+	k->r=NULL;
+	return k;
+}
+struct node* find_pre(struct node* temp)
+{
+	struct node *next;
+	next=temp->l;
+	while(next->r!=NULL&&next->r!=temp)
+	{
+		next=next->r;
+	}
+	return next;
+}
+void inorder(struct node* cur)
+{
+	struct node* pre=NULL;
+	while(cur!=NULL)
+	{
+		if(cur->l==NULL)
+		{
+			printf("%d ",cur->data);
+			cur=cur->r;
+		}
+		else
+		{
+			 pre=find_pre(cur);
+			 if(pre->r==NULL)
+			 {
+			 	pre->r=cur;
+			 	cur=cur->l;
+			 }
+			 else
+			 {
+			 	pre->r=NULL;
+			 	printf("%d ",cur->data);
+			 	cur=cur->r;
+			 }
+			 
+		}
+	}
+}
+int main()
+{
+	int num;
+	root=newnode(10);
+	root->l=newnode(11);
+	root->r=newnode(9);
+	root->l->l=newnode(7);
+	root->r->l=newnode(15);
+	root->r->r=newnode(8);
+	printf("\ninserted successfully");
+	inorder(root);
+	return 0;
+}
