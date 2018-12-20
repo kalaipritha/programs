@@ -1,0 +1,69 @@
+#include<stdio.h>
+int top=-1,stack[20];
+void push()
+{
+	int num;
+	printf("\nenter thenu,ber to be inserted");
+	scanf("%d",&num);
+	++top;
+	stack[top]=num;
+	printf("\ninserted successfully");
+}
+void pop()
+{
+	if(top==-1)
+	{
+	  printf("\nthe stack is empty");
+    }  
+	else
+	{
+	 printf("the deleted value is %d",stack[top]);
+	 --top;
+    }
+    return;
+}
+void print()
+{
+	int p;
+    p=top;
+    if(p==-1)
+    printf("\n the stack is empty");
+    else
+    {
+    	while(p!=-1)
+    	{
+    		printf("\n%d",stack[p]);
+    		p--;
+		}
+	}
+}
+int main()
+{
+	int ch;
+	int t=1;
+	while(t)
+	{
+	printf("1.insert\n2.delete\n3.display");
+	scanf("%d",&ch);
+	switch(ch)
+		{
+			case 1:
+				{
+					push();
+					break;
+				}
+			case 2:
+				{
+					pop();
+					break;
+				}
+			case 3:
+				{
+					print();
+					break;
+				}
+		}
+		printf("\n enter 0 to exit :");
+		scanf("%d",&t);
+	}
+}
