@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<malloc.h>
+struct node
+{
+	int data;
+	struct node* l;
+	struct node* r;
+};
+struct node* root=NULL;
+int top=-1;
+struct node* stack[20];
+struct node* newnode(int num)
+{
+	struct node* k;
+	k=(struct node*)malloc(sizeof(struct node));
+	k->data=num;
+	k->l=NULL;
+	k->r=NULL;
+	return k;
+}
+void push(struct node* root)
+{
+	top++;
+	stack[top]=root;
+	return;
+}
+struct node* pop()
+{
+	struct node* num=(struct node*)malloc(sizeof(struct node));
+	num=stack[top];
+	--top;
+	return num;
+}
+int empty()
+{
+	return top;
+}
+void inorder(struct node* root)
+{
+	//int num;
+
+	if(root==NULL)
+	return;
+	while(1)
+	{
+		if(root!=NULL)
+		
+		{
+			push(root);
+			root=root->l;
+		}
+		else
+		{
+			if(empty()==-1)
+			{
+				break;
+			}
+			root=pop();
+			printf("%d ",root->data);
+			root=root->r;
+			
+		}
+	 } 
+		
+}
+int main()
+{
+	int num;
+	root=newnode(10);
+	root->l=newnode(11);
+	root->r=newnode(9);
+	root->l->l=newnode(7);
+	root->r->l=newnode(15);
+	root->r->r=newnode(8);
+	root->r->r->l=newnode(35);
+	inorder(root);
+
+}
