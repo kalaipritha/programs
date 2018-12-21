@@ -1,0 +1,39 @@
+#include <iostream>
+#include <limits.h>
+using namespace std;
+void find_max(int a[100],int num)
+{
+	int max_end=0,max_far=INT_MIN,start=0,end=0,s=0;
+	for(int i=0;i<num;i++)
+	{
+		max_end=max_end+a[i];
+		if(max_far<max_end)
+		{
+			max_far=max_end;
+			start=s;
+			end=i;
+		}
+		if(max_end<0)
+		{
+		  max_end=0;
+		  s=i+1;
+	    } 
+	}
+	printf("\nthe maximum number in given array is %d",max_far);
+	printf("\nthe starting element is %d\nthe ending element is %d",start,end);
+}
+int main()
+{
+   int n,i;
+   
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"\nenter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   find_max(a,n);
+   return 0;
+}
