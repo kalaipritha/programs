@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<malloc.h>
+struct node
+{
+	int data;
+	struct node* l;
+	struct node* r;
+};
+struct node* root;
+int top1=-1,top2=-1;
+struct node* stack1[100];
+struct node* stack2[10];
+struct node* newnode(int num)
+{
+	struct node *n=(struct node*)malloc(sizeof(struct node));
+	n->data=num;
+	n->l=NULL;
+	n->r=NULL;
+	return n;
+}  
+int empty()
+{
+	if(top1==-1)
+	return 1;
+	else
+	return 0;
+}
+void push1(struct node* temp)
+{
+	//  printf("\ni am in push1");
+	top1++;
+	stack1[top1]=temp;
+}
+struct node* pop1()
+{
+	struct node* temp;
+		//printf("\ni am in pop1");
+	temp=stack1[top1];
+	top1--;
+	return temp;
+}
+void push2(struct node* temp)
+{
+		//printf("\ni am in push2");
+	top2++;
+	stack2[top2]=temp;
+}
+struct node* pop2()
+{
+	struct node* temp;
+	//printf("\ni am in pop");
+	temp=stack2[top2];
+	top2--;
+	return temp;
+}
+
+void inorder_stack(struct node* root)
+{
+	if(root==NULL)
+	return;
+	else
+	{
+		push1(root);
+		while(1)
+		{
+			if(empty()==1)
+			{
+			  break;
+		    }
+			else
+			{
+				root=pop1();
+				push2(root);
+				if(root->l!=NULL)
+				push1(root->l);
+				if(root->r!=NULL)
+				push1(root->r);
+			}
+		}
+	}
+	while(top2!=-1)
+	{
+		struct node* temp;
+		temp=pop2();
+		printf("%d ",temp->data);
+	}
+}
+int main()
+{
+	root=(struct node*)malloc(sizeof(struct node));
+	root=newnode(10);
+	root->l=newnode(11);
+	root->r=newnode(-20);
+	root->l->l=newnode(15);
+	root->l->r=newnode(12);
+	root->r->l=newnode(0);
+	root->r->l->l=newnode(16);
+	root->r->l->r=newnode(18);
+	root->r->r=newnode(9);
+    printf("\ninserted successfully");
+	inorder_stack(root);  
+}
