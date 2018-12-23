@@ -1,0 +1,26 @@
+#include <iostream>
+#include<limits.h>
+using namespace std;
+void find_single(int a[10],int n)
+{
+	int res=a[0];
+	for(int i=1;i<n;i++)
+	{
+		res=res^a[i];
+	}
+	cout<<"\nthe element occuring once is "<<res;
+}
+int main()
+{
+   int n,i,j=0;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   find_single(a,n);
+   return 0;
+}
