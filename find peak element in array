@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+void find_peak(int a[10],int n)
+{
+	int cur,pre,nxt;
+	for(cur=0;cur<n;cur++)
+	{
+		pre=cur-1;
+		nxt=cur+1;
+		if(cur==0)
+		{
+			if(a[cur]>a[nxt])
+			cout<<a[cur]<<"\t";
+		}
+		else if(cur==(n-1))
+		{
+			if(a[cur]>a[pre])
+			cout<<a[cur]<<"\t";
+		}
+		else
+		{
+			if(a[cur]>a[pre]&&a[cur]>a[nxt])
+			cout<<a[cur]<<"\t";
+		}
+		pre++;
+		nxt++;
+	}
+}
+int main()
+{
+   int n,i,j=0;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   cout<<"\n\n";
+   find_peak(a,n);
+   return 0;
+}
