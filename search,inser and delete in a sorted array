@@ -1,0 +1,106 @@
+#include <iostream>
+#include<limits.h>
+using namespace std;
+int search(int a[10],int lo,int hi,int num)
+{
+	cout<<"\n the number to be searched is "<<num;
+	if(hi<lo)
+	{
+		cout<<"in first case";
+				return -1;
+	}
+	int mid;
+	mid=(hi+lo)/2;
+	if(num==a[mid])
+	{
+		cout<<"hiii";
+	  return mid;
+    }
+	else if(num<a[mid])
+	{
+		cout<<"\ncase1";
+	   search(a,lo,mid-1,num);
+    }
+	else
+	{
+		cout<<"\ncase 2";
+	   search(a,mid+1,hi,num);
+    }
+}
+void insert(int a[10],int n)
+{
+	int num,i;
+	cout<<"\nenter a number to be inserted";
+	cin>>num;
+	for(i=n-1;i>=0&&a[i]>num;i--)
+	{
+		a[i+1]=a[i];
+	}
+	a[i+1]=num;
+	n=n+1;
+	cout<<"\nthe updated array is :\n";
+	for(int j=0;j<n;j++)
+	cout<<a[j]<<"\t";
+}
+void del(int a[10],int n)
+{
+	int num,c;
+	cout<<"\nenter a number to be deleted";
+	cin>>num;
+	c=search(a,0,n-1,num);
+	for(int i=c;i<n;i++)
+	{
+		a[i]=a[i+1];
+	}
+	for(int i=0;i<n;i++)
+	cout<<a[i]<<"\t";
+	return;	
+}
+int main()
+{
+   int n,i,j=0;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   int ch,e;
+   cout<<"\n1.search\n2.insert\n3.delete";
+   while(e)
+   {
+   	cout<<"\nenter your choice";
+   	cin>>ch;
+   	switch(ch)
+   	{
+   		case 1:
+   			{
+   				int num;
+   				cout<<"\nenter the number to be searched :";
+	         	cin>>num;
+   			    int b=search(a,0,n-1,num);
+   			    cout<<"\nthe return value is"<<b;
+   			    if(b==-1)
+   			    cout<<"\nthe givern number is not found";
+   			    else
+   			    cout<<"\nthe givern number is found";
+   				break;
+			   }
+			   case 2 :
+			   	{
+			   		insert(a,n);
+			   		break;
+				   }
+				   case 3:
+				   	{
+				   		del(a,n);
+				   		break;
+					   }
+	   }
+	   cout<<"\n do u wanna continue(0/1)";
+	   cin>>e;
+   }
+   return 0;
+}
