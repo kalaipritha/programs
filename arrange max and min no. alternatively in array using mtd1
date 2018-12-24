@@ -8,6 +8,26 @@ void print(int a[],int n)
       cout<<a[i]<<" ";  
    }
 }
+void print2(int a[10],int n)
+{
+	int first=0,last=n-1;
+	bool flag=false;
+	cout<<"\nthis is the second mtd\n";
+	while(first<=last)
+	{
+		if(flag)
+		{
+			cout<<a[first]<<" ";
+			first++;
+		}
+		else
+		{
+			cout<<a[last]<<" ";
+			last--;
+		}
+		flag=!flag;
+	}
+}
 int main()
 {
    int n,i;
@@ -19,9 +39,9 @@ int main()
    {
        cin>>a[i];
    }
+   print2(a,n);
    for(i=0;i<n;i++)
    {
-       cout<<"\nthe value of i is"<<i;
        int temp=a[n-1],p=n-2;
        while(p>=i)
        {
