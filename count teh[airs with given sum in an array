@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+void find_pair(int a[],int n,int sum)
+{
+	int m[100]={0};
+	cout<<"\nwelcome";
+	int count=0;
+	for(int i=0;i<n;i++)
+	{
+		m[a[i]]++;
+	}
+	for(int i=0;i<n;i++)
+	{
+			count=count+m[sum-a[i]];
+			if(sum-a[i]==a[i])
+	        count--;
+	}
+
+	cout<<"the no. of pairs is "<<count/2;
+}
+int main()
+{
+   int n,i,j=0;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   int sum;
+   cout<<"\nenter the sum :";
+   cin>>sum;
+   find_pair(a,n,sum);
+   return 0;
+}
