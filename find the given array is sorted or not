@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+void find_sort(int a[],int n)
+{
+	int i;
+	for(i=0;i<n-1;i++)
+	{
+		if(a[i]>a[i+1])
+		{
+			cout<<"\nthe array is not sorted";
+			return;
+		}
+	}
+	cout<<"\nthe given array is sorted!!!!!";
+}
+void find_sort2(int a[],int n)
+{
+	static int i=0;
+	if(a[i]>a[i+1]&&i<n-1)
+	{
+		cout<<"\nthe givern array is not sorted";
+		return;
+	}
+	else if(a[i]<a[i+1]&&i<n-1)
+	{
+		i++;
+		find_sort2(a,n);
+		return;
+
+	}
+		cout<<"\nthe given aray is sorted";
+
+
+}
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   find_sort(a,n);
+   find_sort2(a,n);
+   return 0;
+}
