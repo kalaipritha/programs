@@ -7,13 +7,27 @@ void union_intersect(int a1[],int a2[],int n,int m)
 	{
 		if(a1[i]<a2[j])
 		{
-			cout<<a1[i]<<",";
-			i++;
+			if(a1[i]==a1[i-1])
+			{
+				i++;
+			}
+			else
+			{
+			  cout<<a1[i]<<",";
+			  i++;
+		    }
 		} 
 		else if(a1[i]>a2[j])
 		{
-			cout<<a2[j]<<",";
-			j++;
+			if(a2[j]==a2[j-1])
+			{
+				j++;
+			}
+			else
+			{
+				cout<<a2[j]<<",";
+			    j++;
+			}
 		}
 		else
 		{
@@ -25,13 +39,27 @@ void union_intersect(int a1[],int a2[],int n,int m)
 	}
 		while(j<m)
 		{
-			cout<<a2[j]<<",";
-			j++;
+				if(a2[j]==a2[j-1])
+			{
+				j++;
+			}
+			else
+			{
+				cout<<a2[j]<<",";
+			    j++;
+			}
 		}
 		while(i<n)
 		{
-			cout<<a1[i]<<",";
-			i++;
+			if(a1[i]==a1[i-1])
+			{
+				i++;
+			}
+			else
+			{
+			  cout<<a1[i]<<",";
+			  i++;
+		    }
 		}
 	cout<<"\n the intersection is";
 	for(i=0;i<s;i++)
