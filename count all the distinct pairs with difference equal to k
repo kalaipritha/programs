@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+void find_diff(int a[],int n)
+{
+	
+	int i,count=0,diff;
+	int m[100]={0};
+	for(i=0;i<n;i++)
+	m[a[i]]++;
+	cout<<"\nenter the difference ";
+	cin>>diff;
+	for(i=0;i<n;i++)
+	{
+		count=count+m[diff+a[i]];
+	}
+	cout<<"\nthe count is "<<count;
+}
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   find_diff(a,n);
+   return 0;
+}
