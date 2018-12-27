@@ -1,0 +1,68 @@
+#include<iostream>
+using namespace std;
+void wave_form(int a[],int n)
+{
+	int p=0,q=1;
+	bool flag=true;
+	for(int i=0;i<n&&q<=n-1;i++)
+	{
+		if(flag)
+		{
+			    if(a[p]>a[p+1])
+		        {
+		        	p++;
+		        	q++;
+	        	}
+		       else
+	        	{
+		        	while(a[q]<a[p]&&q<n-1)
+			        {
+			        	q++;
+		         	}
+			        int temp=a[q];
+		        	a[q]=a[p];
+		        	a[p]=temp;
+		        	p++;
+		        	q++;
+	        	}
+		}
+		else
+		{
+			if(a[p]<a[p+1])
+			{
+				p++;
+				q++;
+			}
+			else
+			{
+				while(a[q]>a[p])
+				{
+					q++;
+				}
+				int temp=a[q];
+		        	a[q]=a[p];
+		        	a[p]=temp;
+		        	p++;
+		        	q++;
+			}
+		}
+		flag=!flag;	
+	}
+	cout<<"\n";
+	for(int i=0;i<n;i++)
+	cout<<a[i]<<" ";
+}
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   wave_form(a,n);
+   return 0;
+}
