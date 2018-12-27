@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+void search(int a[],int lo,int hi)
+{
+	if(hi<lo)
+	{
+		cout<<"\n no fixed point";
+	  return ;
+    }
+	int mid=(lo+hi)/2;
+	if(mid==a[mid])
+	{
+		cout<<"the fixed point is "<<mid;
+		return;
+	}
+	else if(mid>a[mid])
+	search(a,mid+1,hi);
+	else
+	search(a,lo,mid-1);
+}
+void fixed_pt(int a[],int n)
+{
+	search(a,0,n-1);
+}
+int main()
+{
+   int n,i;
+   cout<<"enter the number of elements";
+   cin>>n;
+   int a[n];
+   cout<<"enter the array elements :";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   cout<<"\nsuccessfull";
+   fixed_pt(a,n);
+   return 0;
+}
