@@ -1,0 +1,87 @@
+#include<iostream>
+#include<malloc.h>
+using namespace std;
+struct node
+{
+	int data;
+	struct node* next;
+};
+struct node* temp=NULL;
+void insert(struct node** head,int num)
+{
+	struct node* newnode=(struct node*)malloc(sizeof(struct node));
+	if((*head)==NULL)
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)=newnode;
+		temp=(*head);
+	}
+	else
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)->next=newnode;
+		(*head)=newnode;
+	}
+}
+void display()
+{
+	struct node* p=temp;
+	while(p!=NULL)
+	{
+		cout<<p->data<<" -> ";
+		p=p->next;
+	}
+}
+void del()
+{
+	struct node* x,*y;
+	int num,i=0;
+	y=x=temp;
+	cout<<"\nenter the delete position ";
+	cin>>num;
+	if(num==0)
+	{
+		temp=temp->next;
+		x->next=NULL;
+	}
+	else
+	{
+	while(i<num&&x!=NULL)
+	{
+		y=x;
+		x=x->next;
+		i++;
+	}
+	if(i==num)
+	{
+		y->next=x->next;
+		x->next=NULL;
+	}
+	else
+	{
+		cout<<"\n enter the valid position";
+	}
+}
+}
+int main()
+{
+	struct node* head=NULL;
+	int n,i,a;
+	cout<<"enter the number of elements";
+	cin>>n;
+	cout<<"\nenter the elements";
+	for(i=0;i<n;i++)
+	{
+		cin>>a;
+		insert(&head,a);
+	}
+	cout<<"\ninserted successfuly\n";
+	display();
+	del();
+	cout<<"\n";
+	display();
+	
+	return 0;
+}
