@@ -1,0 +1,82 @@
+#include<iostream>
+#include<malloc.h>
+using namespace std;
+void display();
+struct node
+{
+	int data;
+	struct node* next;
+};
+struct node* temp=NULL;
+void insert(struct node** head,int num)
+{
+	struct node* newnode=(struct node*)malloc(sizeof(struct node));
+	if((*head)==NULL)
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)=newnode;
+		temp=(*head);
+	}
+	else
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)->next=newnode;
+		(*head)=newnode;
+	}
+}
+void display()
+{
+	struct node* p=temp;
+	while(p!=NULL)
+	{
+		cout<<p->data<<" -> ";
+		p=p->next;
+	}
+}
+void sum()
+{
+	struct node* ptr=temp;
+	int num;
+	cout<<"\nenter the number";
+	cin>>num;
+	int i=1,count=0;
+	while(ptr!=NULL)
+	{
+		count++;
+		ptr=ptr->next;
+	}
+	cout<<"\nthe count is "<<count;
+	ptr=temp;
+	int sum=0;
+	int len=count-num;
+	while(i<=len||ptr!=NULL)
+	{
+		if(i>len)
+		{
+		 sum=sum+(ptr->data); 
+	    }
+	    ptr=ptr->next;
+	    i++;
+	}
+	cout<<"\nthe sum is "<<sum;
+}
+int main()
+{
+	struct node* head=NULL;
+	int n,i,a;
+	cout<<"enter the number of elements";
+	cin>>n;
+	cout<<"\nenter the elements";
+	for(i=0;i<n;i++)
+	{
+		cin>>a;
+		insert(&head,a);
+	}
+	cout<<"\ninserted successfuly\n";
+	display();
+	sum();
+	//display();
+	return 0;
+}
