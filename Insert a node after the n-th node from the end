@@ -1,0 +1,81 @@
+#include<iostream>
+#include<malloc.h>
+using namespace std;
+void display();
+struct node
+{
+	int data;
+	struct node* next;
+};
+struct node* temp=NULL;
+void insert(struct node** head,int num)
+{
+	struct node* newnode=(struct node*)malloc(sizeof(struct node));
+	if((*head)==NULL)
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)=newnode;
+		temp=(*head);
+	}
+	else
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)->next=newnode;
+		(*head)=newnode;
+	}
+}
+void ins()
+{
+	struct node* cur;
+	struct node* pre;
+	int len,count=0,a,num;
+	cur=temp;
+	while(cur!=NULL)
+	{
+		count++;
+		cur=cur->next;
+	}
+	cout<<"\nenter the posiotion and number";
+	cin>>a>>num;
+	len=(count-a)+1;
+	cur=temp;
+	for(int i=0;i<len;i++)
+	{
+		pre=cur;
+		cur=cur->next;
+	}
+	struct node* newnode=(struct node*)malloc(sizeof(struct node));
+	newnode->data=num;
+	newnode->next=cur;
+	pre->next=newnode;
+	display();
+}
+void display()
+{
+	struct node* p=temp;
+	while(p!=NULL)
+	{
+		cout<<p->data<<" -> ";
+		p=p->next;
+	}
+}
+int main()
+{
+	struct node* head=NULL;
+	int n,i,a;
+	cout<<"enter the number of elements";
+	cin>>n;
+	cout<<"\nenter the elements";
+	for(i=0;i<n;i++)
+	{
+		cin>>a;
+		insert(&head,a);
+	}
+	cout<<"\ninserted successfuly\n";
+	display();
+	ins();
+	display();
+	return 0;
+}
