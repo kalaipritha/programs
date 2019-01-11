@@ -1,0 +1,82 @@
+#include <iostream>
+#include<malloc.h>
+using namespace std;
+struct node
+{
+	int data;
+	struct node* next;
+	struct node* prev;
+};
+struct node* temp=NULL;
+void insert(struct node** head,int num)
+{
+	struct node* newnode=(struct node*)malloc(sizeof(struct node));
+	if((*head)==NULL)
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		newnode->prev=NULL;
+		(*head)=newnode;
+		temp=(*head);
+	}
+	else
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		newnode->prev=(*head);
+		(*head)->next=newnode;
+		(*head)=newnode;
+	}
+}
+void display()
+{
+	struct node* p=temp;
+	while(p!=NULL)
+	{
+		cout<<p->data<<" -> ";
+		p=p->next;
+	}
+}
+void find_sum()
+{
+	struct node* p=temp;
+	struct node* q=temp;
+	while(q->next!=NULL)
+	q=q->next;
+	cout<<"\nthe last element is "<<q->data;
+	int sum,num;
+	cout<<"\nenter the sum";
+	cin>>num;
+	cout<<"\nthe pairs are :";
+	while(p!=q)
+	{
+		sum=p->data+q->data;
+		if(sum==num)
+		{
+			cout<<"("<<p->data<<","<<q->data<<")\n";
+			p=p->next;
+		}
+		else if(sum<num)
+		p=p->next;
+		
+		else
+		q=q->prev;	
+	}
+}
+int main()
+{
+	struct node* head=NULL;
+	int n,i,a;
+	cout<<"enter the number of elements";
+	cin>>n;
+	cout<<"\nenter the elements";
+	for(i=0;i<n;i++)
+	{
+		cin>>a;
+		insert(&head,a);
+	}
+	cout<<"\ninserted successfuly\n";
+	//display();
+	find_sum();
+	return 0;
+}
