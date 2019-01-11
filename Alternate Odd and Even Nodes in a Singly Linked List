@@ -1,0 +1,110 @@
+#include <iostream>
+#include<malloc.h>
+using namespace std;
+struct node
+{
+	int data;
+	struct node* next;
+};
+struct node* temp=NULL;
+void insert(struct node** head,int num)
+{
+	struct node* newnode=(struct node*)malloc(sizeof(struct node));
+	if((*head)==NULL)
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)=newnode;
+		temp=(*head);
+	}
+	else
+	{
+		newnode->data=num;
+		newnode->next=NULL;
+		(*head)->next=newnode;
+		(*head)=newnode;
+	}
+}
+void display()
+{
+	struct node* p=temp;
+	while(p!=NULL)
+	{
+		cout<<p->data<<" -> ";
+		p=p->next;
+	}
+}
+void alternate(int n)
+{
+	struct node* p=temp;
+	struct node* q=p->next;
+	bool flag=true;
+	int i;
+	for(i=0;i<n&&q!=NULL;i++)
+	{
+		if(flag)
+		{
+			if(p->data%2!=0)
+			{
+				p=p->next;
+				q=q->next;
+			}
+			else
+			{
+				while(q->data%2==0&&q!=NULL)
+				{
+					q=q->next;
+				}
+				if(q!=NULL)
+				{
+		    		int swap=p->data;
+		    		p->data=q->data;
+		    		q->data = swap;
+		    		p=p->next;
+		    	}
+			}
+		}
+		else
+		{
+			if(p->data%2==0)
+			{
+				p=p->next;
+				q=q->next;
+			}
+			else
+			{
+				while(q->data!=0&&q!=NULL)
+				{
+					q=q->next;
+				}
+				if(q!=NULL)
+				{
+					int swap=p->data;
+					p->data=q->data;
+					q->data=swap;
+					p=p->next;
+				}
+			}
+		}
+		flag=!flag;
+	}
+}
+int main()
+{
+	struct node* head=NULL;
+	int n,i,a;
+	cout<<"enter the number of elements";
+	cin>>n;
+	cout<<"\nenter the elements";
+	for(i=0;i<n;i++)
+	{
+		cin>>a;
+		insert(&head,a);
+	}
+	cout<<"\ninserted successfuly\n";
+	display();
+	alternate(n);
+	cout<<"\n";   
+	display();
+	return 0;
+}
