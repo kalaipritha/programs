@@ -40,22 +40,23 @@ void allsuggest(struct trie* cur,string prefix)
 void suggestion(struct trie* root,string str)
 {
     struct trie * prev=root;
-    string prefix=" ";
+    string prefix="";
     char lastchar;
     int n=str.length();
     for(int i=0;i<n;i++)
     {
         prefix=prefix+(char)str[i];
-        lastchar=prefix[i];
+        lastchar=str[i];
         struct trie* cur = prev->children[lastchar];
         if(cur==NULL)
         {
             cout<<"\nthe given node is not found";
             i++;
-            return ;
+            break ;
         }
-        cout<<"\nthe suggestions are:\n ";
+        cout<<"\nthe suggestions for "<<prefix<<" are: ";
         allsuggest(cur,prefix);
+        prev=cur;
         
     }
 }
@@ -69,7 +70,10 @@ bool search(struct trie* root,string str)
     {
         temp=temp->children[str[i]];
         if(temp==NULL)
-        return false;
+        {
+            suggestion(root,str);
+            return false;
+        }
     }
     if(temp->eow==false)
     {
