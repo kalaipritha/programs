@@ -33,12 +33,13 @@ void rotate()
 	cin>>k;
 	 while(p->next!=NULL)
 	 {
-	    p=p->next;
-	    i++;
+	    
 	    if(i==k)
 	    {
 	    	r=p;
 		}
+		p=p->next;
+	    i++;
 	 }
 	 q=r->next;
 	 r->next=NULL;
